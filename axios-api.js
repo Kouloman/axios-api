@@ -1,16 +1,12 @@
 // Importation de la librairie Axios
 const axios = require('axios');
-require('dotenv').config(); // Importation de dotenv
-
-const API_BASE_URL = process.env.API_BASE_URL; // Utilisation de la variable d'environnement
 
 // Fonction pour créer un nouveau post
 const createPost = async () => {
   try {
-    const response = await axios.post(`${API_BASE_URL}/posts`, {
-      name: 'Koul',
-      username: 'Youss',
-        email: 'koul@gmail.com',
+    const response = await axios.post('https://jsonplaceholder.typicode.com/posts', {
+      title: 'Titre Exemple',
+      body: 'Contenu Exemple',
       userId: 1,
     });
     console.log('Création réussie :', response.data);
@@ -22,7 +18,7 @@ const createPost = async () => {
 // Fonction pour lire tous les posts
 const getPosts = async () => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/posts`);
+    const response = await axios.get('https://jsonplaceholder.typicode.com/posts');
     console.log('Liste des posts :', response.data);
   } catch (error) {
     console.error('Erreur lors de la récupération :', error.message);
@@ -32,10 +28,9 @@ const getPosts = async () => {
 // Fonction pour mettre à jour un post
 const updatePost = async (postId) => {
   try {
-    const response = await axios.put(`${API_BASE_URL}/posts/${postId}`, {
-        name: 'Koul',
-        username: 'Youss',
-          email: 'koul@gmail.com',
+    const response = await axios.put(`https://jsonplaceholder.typicode.com/posts/${postId}`, {
+      title: 'Titre Mis à Jour',
+      body: 'Contenu Mis à Jour',
       userId: 1,
     });
     console.log('Mise à jour réussie :', response.data);
@@ -47,7 +42,7 @@ const updatePost = async (postId) => {
 // Fonction pour supprimer un post
 const deletePost = async (postId) => {
   try {
-    const response = await axios.delete(`${API_BASE_URL}/posts/${postId}`);
+    const response = await axios.delete(`https://jsonplaceholder.typicode.com/posts/${postId}`);
     console.log('Suppression réussie, code statut :', response.status);
   } catch (error) {
     console.error('Erreur lors de la suppression :', error.message);
